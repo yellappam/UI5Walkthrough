@@ -10,10 +10,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/m/MessageToast"], function(Con
 			// lazy loading
 			if (!oDialog) {
 				// create dialog via fragment factory
-				oDialog = sap.ui.xmlfragment("sap.ui.demo.wt.view.HelloDialog");
+				oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.wt.view.HelloDialog", this);
+				// connect dialog to view (models, lifecycle)
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
+		},
+
+		onCloseDialog: function() {
+			this.getView().byId("helloDialog").close();
 		},
 
 		onShowHello: function() {
