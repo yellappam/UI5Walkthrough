@@ -1,3 +1,7 @@
 <mvc:View controllerName="sap.ui.demo.wt.controller.App" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
 	<Button text="Say Hello" press="onShowHello"/>
+	<Input value="{/recipient/name}"
+	       description="Hello {/recipient/name}"
+	       valueLiveUpdate="true"
+	       width="60%"/>
 </mvc:View>
