@@ -1,12 +1,27 @@
-sap.ui.define(["sap/ui/core/mvc/Controller","sap/m/MessageToast"], function(Controller,MessageToast) {
+sap.ui.define(["sap/ui/core/mvc/Controller", "sap/m/MessageToast"], function(Controller, MessageToast) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.wt.controller.HelloPanel", {
+
+		onOpenDialog: function() {
+
+			var oView = this.getView();
+			var oDialog = oView.byId("helloDialog");
+
+			// lazy loading
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment("sap.ui.demo.wt.view.HelloDialog");
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+		},
 
 		onShowHello: function() {
 			// read msg from i18n model
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var sRecipient = this.getView().getModel().getProperty("/recipient/name");
-			var sMsg = oBundle.getText("helloMsg", sRecipient);
+			var sMsg = oBundle.getText("helloMsg", [sRecipient]);
+			// show message
 			MessageToast.show(sMsg);
 		}
 
