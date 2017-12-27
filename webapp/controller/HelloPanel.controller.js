@@ -2,21 +2,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/m/MessageToast"], function(Con
 	"use strict";
 	return Controller.extend("sap.ui.demo.wt.controller.HelloPanel", {
 
-		onOpenDialog: function() {
-
-			var oView = this.getView();
-			var oDialog = oView.byId("helloDialog");
-
-			// lazy loading
-			if (!oDialog) {
-				// create dialog via fragment factory
-				oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.wt.view.HelloDialog", this);
-				// connect dialog to view (models, lifecycle)
-				oView.addDependent(oDialog);
-			}
-			oDialog.open();
-		},
-
 		onCloseDialog: function() {
 			this.getView().byId("helloDialog").close();
 		},
@@ -28,6 +13,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/m/MessageToast"], function(Con
 			var sMsg = oBundle.getText("helloMsg", [sRecipient]);
 			// show message
 			MessageToast.show(sMsg);
+		},
+
+		onOpenDialog: function() {
+			this.getOwnerComponent().openHelloDialog();
 		}
 
 	});
