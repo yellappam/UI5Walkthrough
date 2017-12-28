@@ -1,5 +1,12 @@
 <mvc:View controllerName="sap.ui.demo.wt.controller.InvoiceList" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-	<List headerText="{i18n>invoiceListTitle}" items="{invoice>/Invoices}" class="sapUiResponsiveMargin" width="auto">
+	<List id="invoiceList" headerText="{i18n>invoiceListTitle}" items="{invoice>/Invoices}" class="sapUiResponsiveMargin" width="auto">
+		<headerToolbar>
+			<Toolbar>
+				<Title text="{i18n>invoiceListTitle}"/>
+				<ToolbarSpacer/>
+				<SearchField width="50%" search="onFilterInvoices" selectOnFocus="false"/>
+			</Toolbar>
+		</headerToolbar>
 		<items>
 			<ObjectListItem title="{invoice>Quantity} x {invoice>ProductName}"
 				number="{ parts: [{ path: 'invoice>ExtendedPrice'},{ path: 'view>/currency' }], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
