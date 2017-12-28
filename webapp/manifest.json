@@ -19,9 +19,7 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": [
-			"sap_belize"
-		]
+		"supportedThemes": ["sap_belize"]
 	},
 	"sap.ui5": {
 		"_version": "1.1.0",
@@ -38,12 +36,20 @@
 				"settings": {
 					"bundleName": "sap.ui.demo.wt.i18n.i18n"
 				}
+			},
+			"invoice": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "Invoices.json"
 			}
 		},
 		"resources": {
 			"css": [{
 				"uri": "css/style.css"
 			}]
+		},
+		"contentDensities": {
+			"compact": false,
+			"cozy": false
 		}
 	}
 }
